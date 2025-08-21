@@ -7,11 +7,14 @@ app = FastAPI()
 manager = Manager()
 logger = logging.getLogger(__name__)
 
-base_config = logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
-        handlers=logging.StreamHandler())
 
+@app.get("/")
+def welcome():    
+    """
+    Endpoint to return a welcome message..
+    """    
+    logger.info("Root endpoint accessed.")
+    return {"message": "Service is running"}
 
 @app.get("/process_data")
 def process_data():
@@ -26,3 +29,6 @@ def process_data():
     except Exception as e:
         logger.error(f"Error sending data: {e}")
         return {"error": str(e)}
+    
+
+
