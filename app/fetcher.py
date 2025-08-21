@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import pandas as pd 
 import logging
-import config  
+from app import config  
 
 
 logger = logging.getLogger(__name__)
