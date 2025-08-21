@@ -1,11 +1,17 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: route-past-hedgehog
+  name: malicious-text-system
+  labels:
+    app: malicious-text-system
 spec:
   to:
-    name: ''
+    name: malicious-text-system
     weight: 100
     kind: Service
-  host: ''
-  path: ''
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
