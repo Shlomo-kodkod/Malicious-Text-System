@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import pandas as pd 
 import logging
-import config  
+from app import config  
 
 
 logger = logging.getLogger(__name__)
@@ -19,7 +19,7 @@ class DAL:
         Connect to the mongo atlas database.
         """
         try:
-            uri = f"mongodb+srv://{config.username}:{config.password}@{config.db}.gurutam.mongodb.net/"
+            uri = f"mongodb+srv://{config.username}:{config.password}@{config.cluster}.mongodb.net/"
             self.__client = MongoClient(uri)
             self.__db = self.__client[config.db]
             logger.info(f"Connected to mongodb.")
@@ -51,6 +51,9 @@ class DAL:
         
     
     @property
-    def get_df(self):
+    def get_df(self) -> pd.DataFrame:
+        """
+        Get the dataframe containing the collection data.
+        """
         return self.__df
 

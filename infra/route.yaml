@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: route-past-hedgehog
+spec:
+  to:
+    name: ''
+    weight: 100
+    kind: Service
+  host: ''
+  path: ''
