@@ -19,7 +19,7 @@ class DAL:
         Connect to the mongo atlas database.
         """
         try:
-            uri = f"mongodb+srv://{config.username}:{config.password}@{config.db}.gurutam.mongodb.net/"
+            uri = f"mongodb+srv://{config.username}:{config.password}@{config.cluster}.mongodb.net/"
             self.__client = MongoClient(uri)
             self.__db = self.__client[config.db]
             logger.info(f"Connected to mongodb.")
