@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: malicious-text-system
+spec:
+  selector:
+    matchLabels:
+      app: malicious-text-system
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: malicious-text-system
+    spec:
+      containers:
+        - name: malicious-text-system
+          image: kodkod1docker/malicious-text-system:v11
+          ports:
+            - containerPort: 8085
+              protocol: TCP
+          env: 
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: malicious-text-system-secret
+                  key: MONGO_INITDB_ROOT_USERNAME
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: malicious-text-system-secret
+                  key: MONGO_INITDB_ROOT_PASSWORD
+            - name: MONGO_INITDB_CLUSTER
+              valueFrom:
+                secretKeyRef:
+                  name: malicious-text-system-secret
+                  key: MONGO_INITDB_CLUSTER
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
