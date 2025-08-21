@@ -1,5 +1,6 @@
 docker build -t kodkod1docker/malicious-text-system:v11 .
-docker run -d -p 8085:8085 kodkod1docker/malicious-text-system:v11
+docker push kodkod1docker/malicious-text-system:v11
+
 
 cd infra
 
