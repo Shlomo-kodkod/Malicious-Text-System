@@ -51,7 +51,7 @@ class DAL:
         
     
     @property
-    def get_df(self):
+    def get_df(self) -> pd.DataFrame:
         """
         Get the dataframe containing the collection data.
         """

@@ -12,7 +12,7 @@ class Manager:
         self.__dal = DAL()
         self.__processor = None
 
-    def load_data(self):
+    def load_data(self) -> pd.DataFrame:
         """
         Load data from the database and return a DataFrame.
         """

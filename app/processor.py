@@ -13,7 +13,7 @@ class Processor:
         self.__df = data
     
     @staticmethod
-    def find_rarest_word(text):
+    def find_rarest_word(text) -> str:
         """Finds the rarest word in a given text string."""
         words = text.split()
         word_counts = pd.Series(words).value_counts()
@@ -29,7 +29,7 @@ class Processor:
         logger.info("successfully find the rarest word per row.")
 
     @staticmethod
-    def calculate_sentiment_score(text: str) -> float:
+    def calculate_sentiment_score(text: str) -> str:
         """
         Analyzes the sentiment of a given text string and returns a sentiment score.
         """
@@ -64,7 +64,7 @@ class Processor:
             raise e
     
     @staticmethod
-    def find_weapons(text: str, weapons: list):
+    def find_weapons(text: str, weapons: list) -> str:
         """
         Find weapons in the given text using the provided set of weapons.
         """
@@ -83,7 +83,7 @@ class Processor:
 
 
     @property
-    def get_df(self):
+    def get_df(self) -> pd.DataFrame:
         """
         Get the DataFrame containing the processed data.
         """
