@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: malicious-text-system
-          image: kodkod1docker/malicious-text-system:v11
+          image: kodkod1docker/malicious-text-system:v12
           ports:
             - containerPort: 8085
               protocol: TCP
