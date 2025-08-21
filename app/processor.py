@@ -9,8 +9,7 @@ logger = logging.getLogger(__name__)
 
 class Processor:
     def __init__(self, data: pd.DataFrame):
-        self.__orginal_data = data
-        self.__df = pd.DataFrame()
+        self.__df = data
     
     @staticmethod
     def find_rarest_word(text):
@@ -21,16 +20,15 @@ class Processor:
     
     def rarest_word(self, column: str = 'Text'):
         """
-        Returns a DataFrame with the rarest word in text field for each row of the DataFrame.
+        Add a new column to the DataFrame with the rarest word in text field for each row of the original DataFrame.
         """
-        if (self.__orginal_data is None) or ('Text' not in self.__orginal_data.columns):
+        if (self.__df is None) or ('Text' not in self.__df.columns):
             logger.error("DataFrame is empty or 'Text' column is missing.")
-            return None
-        self.__df['rarest_word'] = self.__orginal_data[column].apply(Processor.find_rarest_word)
+        self.__df['rarest_word'] = self.__df[column].apply(Processor.find_rarest_word)
         logger.info("successfully find the rarest word per row.")
 
     @staticmethod
-    def analyze_sentiment(text: str) -> float:
+    def calculate_sentiment_score(text: str) -> float:
         """
         Analyzes the sentiment of a given text string and returns a sentiment score.
         """
@@ -41,6 +39,15 @@ class Processor:
         elif -0.49 < result <= 0.49: return 'negative'
         else: return 'neutral'
 
+    def analyze_sentiment(self, column: str = 'Text'):
+        """
+        Add a new column to the DataFrame with sentiment scores for each row of the original DataFrame.
+        """
+        if (self.__df is None) or (column not in self.__df.columns):
+            logger.error("DataFrame is empty or specified column is missing.")
+        self.__df["sentiment"] = self.__df[column].apply(Processor.calculate_sentiment_score)
+        logger.info("Successfully analyzed sentiment per row.")
+        print(self.__df)
     
 
         
@@ -55,3 +62,4 @@ d.disconnect()
 df = d.get_df
 p = Processor(df)
 p.rarest_word()
+p.analyze_sentiment()
