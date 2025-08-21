@@ -1,5 +1,5 @@
-docker build -t kodkod1docker/malicious-text-system:v11 .
-docker push kodkod1docker/malicious-text-system:v11
+docker build -t kodkod1docker/malicious-text-system:v12 .
+docker push kodkod1docker/malicious-text-system:v12
 
 
 cd infra
