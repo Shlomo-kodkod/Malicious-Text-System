@@ -1,7 +1,6 @@
 import pandas as pd
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-nltk.download('vader_lexicon')
 import logging
 from app import config
 from app.fetcher import DAL
