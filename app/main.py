@@ -7,6 +7,11 @@ app = FastAPI()
 manager = Manager()
 logger = logging.getLogger(__name__)
 
+base_config = logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+        handlers=logging.StreamHandler())
+
 
 @app.get("/process_data")
 def process_data():
