@@ -1,17 +1,18 @@
-apiVersion: route.openshift.io/v1
 kind: Route
+apiVersion: route.openshift.io/v1
 metadata:
   name: malicious-text-system
   labels:
     app: malicious-text-system
+  annotations:
+    haproxy.router.openshift.io/timeout: 2m
+    openshift.io/host.generated: 'true'
 spec:
+  host: malicious-text-system-shlomot575-dev.apps.rm3.7wse.p1.openshiftapps.com
   to:
+    kind: Service
     name: malicious-text-system
     weight: 100
-    kind: Service
   port:
-    targetPort: http
-  tls:
-    termination: edge
-    insecureEdgeTerminationPolicy: Redirect
+    targetPort: 8085
   wildcardPolicy: None
